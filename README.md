@@ -25,7 +25,7 @@ The loot is fully customizable inside the game. You do not need to edit config f
 
 ## 🛠️ Implementation & Requirements
 ### 📋 Required Versions
-* **Minecraft Version:** `1.21.1` (Java Edition)
+* **Minecraft Version:** `1.21.11` (Java Edition)
 * **Server Software:** [PaperMC](https://papermc.io/) (Recommended)
 ### Required Plugins:
 * **Citizens & CommandNPC**
