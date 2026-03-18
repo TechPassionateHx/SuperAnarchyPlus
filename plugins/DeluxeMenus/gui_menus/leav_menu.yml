@@ -1,0 +1,52 @@
+menu_title: '&8Exit'
+open_command: exitroom
+size: 27
+items:
+  'home_button':
+    material: RED_BED
+    slot: 12
+    display_name: '&a&lGo to Home'
+    lore:
+      - '&7Teleport back to your bed'
+      - '&7or personal home location.'
+    left_click_commands:
+      - '[console] minecraft:tag %player_name% add RewardGiven'
+      
+      - '[close]'
+      - '[console] minecraft:tp %player_name% %player_bed_x% %player_bed_y% %player_bed_z%'
+    right_click_commands:
+      - '[console] minecraft:tag %player_name% add RewardGiven'
+      
+      - '[close]'
+      - '[console] minecraft:tp %player_name% %player_bed_x% %player_bed_y% %player_bed_z%'
+
+  'spawn_button':
+    material: COMPASS
+    slot: 14
+    display_name: '&e&lGo to Spawn'
+    lore:
+      - '&7Teleport back to the'
+      - '&7main server spawn.'
+    left_click_commands:
+      - '[console] minecraft:tag %player_name% add RewardGiven'
+      
+      - '[close]'
+      - '[console] spawn %player_name%'
+    right_click_commands:
+      - '[console] minecraft:tag %player_name% add RewardGiven'
+      
+      - '[close]'
+      - '[console] spawn %player_name%'
+
+  'close_button':
+    material: BARRIER
+    slot: 22
+    display_name: '&c&lClose Menu'
+    lore:
+      - '&7Didn''t manage inventory?'
+      - '&7Take your time.'
+      - '&eYou can Place and Break Shulker Box here'
+    left_click_commands:
+      - '[close]'
+    right_click_commands:
+      - '[close]'

@@ -1,0 +1,22 @@
+location: world:-27.654:73.000:-84.395
+enabled: true
+display-range: 12
+update-range: 12
+update-interval: 20
+facing: 0.0
+down-origin: false
+pages:
+- lines:
+  - content: '"&6&l「 &f&lWAVE 3: PATIENCE & PRECISION &6&l」"'
+    height: 0.3
+  - content: '&4&lLIVES: &fYou have &c3 LIVES'
+    height: 0.3
+  - content: '&c&lTHE VOID: &fFall into the lava and lose &41 Life&f'
+    height: 0.3
+  - content: '&c&lDEATH: &fLose all lives and your &nprogress is WIPED&f'
+    height: 0.3
+  - content: '&6&lOBJECTIVE: &fCross the lava lake to the next Platform'
+    height: 0.3
+  - content: '&e&lFINISH: &fRight-click the &8GateKeeper'
+    height: 0.3
+  actions: {}

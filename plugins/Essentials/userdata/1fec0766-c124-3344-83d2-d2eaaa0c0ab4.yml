@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 104.28.164.30
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1772803246531
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1773067658332
+  login: 1773066474388
+money: '0'
+last-account-name: TechNovaX
+lastlocation:
+  world: 65f11cd3-d631-424d-863a-e3f6e90059d0
+  world-name: world_the_end
+  x: 3133.7134021305533
+  y: 95.53817229211603
+  z: 3466.483261016827
+  yaw: -22.81781005859375
+  pitch: 24.85572052001953
+logoutlocation:
+  world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+  world-name: world
+  x: -199.08319838433192
+  y: 73.0
+  z: -1762.918650805948
+  yaw: 133.6331787109375
+  pitch: 48.79994583129883

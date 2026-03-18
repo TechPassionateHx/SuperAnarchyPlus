@@ -1,0 +1,22 @@
+location: world:-17.526:86.500:-134.637
+enabled: true
+display-range: 48
+update-range: 48
+update-interval: 20
+facing: 0.0
+down-origin: false
+pages:
+- lines:
+  - content: '"&5&l「 &f&lWAVE 2: THE INVISIBLE DEATHS &5&l」"'
+    height: 0.3
+  - content: '&d&lENTRY: &7Trade your &e6 Points &7to TheRight to enter'
+    height: 0.3
+  - content: '&c&lPOISON ALERT: &fHoards of &7&oInvisible Spiders &fawait'
+    height: 0.3
+  - content: '&fThey are small, fast, and strike from the shadows'
+    height: 0.3
+  - content: '&6&lOBJECTIVE: &fSlay &e8 Spiders &fto unlock the Final Trial'
+    height: 0.3
+  - content: '&b&lHINT: &fHold your &3&lSHIELD &fhigh the moment you enter!'
+    height: 0.3
+  actions: {}

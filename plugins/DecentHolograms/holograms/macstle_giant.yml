@@ -1,0 +1,14 @@
+location: world:-17.369:79.500:-62.782
+enabled: true
+display-range: 48
+update-range: 48
+update-interval: 20
+facing: 0.0
+down-origin: false
+pages:
+- lines:
+  - content: '"&c█▀▄▀█ ▄▀█ █▀▀ █▀▀ ▀█▀ █░░ █▀▀"'
+    height: 0.3
+  - content: '"&c█░▀░█ █▀█ █▄▄ ▄█▄ ░█░ █▄▄ ██▄"'
+    height: 0.3
+  actions: {}

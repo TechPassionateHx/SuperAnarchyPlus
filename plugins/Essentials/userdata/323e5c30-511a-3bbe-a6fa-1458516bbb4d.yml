@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 58.8.152.225
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1773040317231
+  login: 1773034592421
+money: '0'
+last-account-name: Cen_tial
+lastlocation:
+  world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+  world-name: world
+  x: -17.841184142028364
+  y: 84.0
+  z: -137.09720098852782
+  yaw: -161.62156677246094
+  pitch: 10.962946891784668
+logoutlocation:
+  world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+  world-name: world
+  x: 1671.3548302845336
+  y: 69.0
+  z: 1233.5857691707376
+  yaw: 67.01889038085938
+  pitch: 34.272865295410156

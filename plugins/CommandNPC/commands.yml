@@ -1,0 +1,36 @@
+NPCS:
+  '0':
+    Commands:
+    - 1~~~dm open gatekeeper_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '1':
+    Commands:
+    - 1~~~execute as @a[name=<player>,tag=PurgeFought2] at @s run tp @s -17 85 -113~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '2':
+    Commands:
+    - 1~~~minecraft:tag %player_name% add PurgeFought3~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+    - 2~~~scoreboard players reset %player_name% ParkourLives~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+    - 3~~~minecraft:tp %player_name% 4 -58 73~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '5':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '4':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '6':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '7':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '8':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '9':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '10':
+    Commands:
+    - 1~~~dm open leav_menu %player_name%~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false
+  '11':
+    Commands:
+    - 1~~~minecraft:tp %player_name% %player_bed_x% %player_bed_y% %player_bed_z%'~~~noPerm~~~BOTH~~~~~~true~~~false~~~false~~~0.0~~~0~~~0~~~false~~~false

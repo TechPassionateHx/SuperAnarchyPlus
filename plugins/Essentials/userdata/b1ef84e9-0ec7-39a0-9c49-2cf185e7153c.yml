@@ -1,0 +1,55 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 104.28.155.19
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1772975205836
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1772975297131
+  login: 1772974552551
+money: '0'
+last-account-name: TechPlayer121
+lastlocation:
+  world: 814f06b9-7da3-488c-88a1-91515ab84d2a
+  world-name: world_nether
+  x: 209.86393158286785
+  y: 80.8571869332958
+  z: 157.7996102045499
+  yaw: -29.29934310913086
+  pitch: 43.2940673828125
+logoutlocation:
+  world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+  world-name: world
+  x: -25.348186417383474
+  y: 66.74036538964236
+  z: 1.6530484250212942
+  yaw: 79.28323364257812
+  pitch: 27.392623901367188
+homes:
+  a1:
+    world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+    world-name: world
+    x: 1793.699999988079
+    y: -54.0
+    z: 1232.552885364056
+    yaw: 118.8653335571289
+    pitch: 48.79365158081055
+  a2:
+    world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+    world-name: world
+    x: 115.30000001192093
+    y: -45.799999952316284
+    z: -1365.699999988079
+    yaw: -165.0292510986328
+    pitch: 45.11725997924805

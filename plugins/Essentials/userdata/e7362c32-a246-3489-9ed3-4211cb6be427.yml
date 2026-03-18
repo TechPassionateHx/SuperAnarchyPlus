@@ -1,0 +1,38 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 119.235.222.147
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1772074170925
+  login: 1772073967437
+money: '0'
+last-account-name: Nex_
+lastlocation:
+  world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+  world-name: world
+  x: -14.300000011920929
+  y: 64.0
+  z: -24.87390099536134
+  yaw: -76.84661865234375
+  pitch: 18.255752563476562
+logoutlocation:
+  world: d8b0a1c5-720e-4135-a2b9-8e0207d8288f
+  world-name: world
+  x: -16.574968364091255
+  y: 177.4273851211747
+  z: -62.24988449682007
+  yaw: -163.0770263671875
+  pitch: -10.3883056640625

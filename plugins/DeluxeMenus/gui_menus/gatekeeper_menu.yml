@@ -1,0 +1,30 @@
+menu_title: '&8Gatekeeper Checkpoint'
+open_command: gatekeeper_menu
+size: 27
+items:
+  'deposit_points':
+    material: COMPASS
+    slot: 13
+    display_name: '&6&lDeposit Points'
+    lore:
+      - '&7Current Points: &e%objective_score_PurgePoints%'
+      - ''
+      - '&fNeed &b6 points &fto complete.'
+      - '&7(Click to sacrifice points and advance)'
+    left_click_requirement:
+      requirements:
+        points_check:
+          type: '>='
+          input: '%objective_score_PurgePoints%'
+          output: '6'
+          deny_commands:
+            - '[message] &c&l(!) &cYou only have %objective_score_PurgePoints% points! Go kill more zombies.'
+            - '[close]'
+    left_click_commands:
+      - '[console] scoreboard players remove %player_name% PurgePoints 6'
+      - '[console] minecraft:tag %player_name% add PurgeFought'
+      - '[console] minecraft:tag %player_name% remove FightingWave1'
+      - '[console] scoreboard players set %player_name% PlayerDied 0'
+      - '[console] tp %player_name% -17 170 -120'  # <--- Put your Wave 2 X Y Z here!
+      - '[message] &a&lSUCCESS! &7The Gatekeeper accepts your tribute. Proceed to Wave 2.'
+      - '[close]'

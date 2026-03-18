@@ -1,0 +1,25 @@
+location: world:-17.385:88.000:-83.366
+enabled: true
+display-range: 48
+update-range: 48
+update-interval: 20
+facing: 0.0
+down-origin: false
+pages:
+- lines:
+  - content: '"&4&l「 &f&lWAVE 1: THE GUARDS OF THE PALACE &4&l」"'
+    height: 0.3
+  - content: '&c&lWARNING: &7Minimum &bProt 2 Diamond Gear &7required.'
+    height: 0.3
+  - content: '&8&m---------------------------------------'
+    height: 0.3
+  - content: '&fThe &6Palace Guards &fwill swarm upon entry'
+    height: 0.3
+  - content: '&fYou must &eKill &fthem to gather &6Essence Points&f'
+    height: 0.3
+  - content: '&6&lOBJECTIVE: &fCollect &e6 Points &fto unlock Wave 2'
+    height: 0.3
+  - content: '&7&o(Hint: Guards cannot wander more than 20 blocks from the Diamond
+      Block)'
+    height: 0.3
+  actions: {}
