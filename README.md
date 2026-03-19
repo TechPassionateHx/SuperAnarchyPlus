@@ -9,7 +9,7 @@ The main goal of this project is to **remove the fear of losing gear**. By provi
 
 ## 🕹️ How it Works
 1. **The Spawn:** Players start in a protected WorldSpawn region to prevent spawn-killing. From there, they can grind for basic gear. (Giving newbies PvP protection is highly recommended).
-2. **The Mactsle:** Players enter the main castle guided by holograms.
+2. **The Macstle:** Players enter the main castle guided by holograms.
 3. **The Challenge:** Survive 3 waves of PvE combat followed by a parkour skill test.
 4. **The Reward:** Winners enter the **Victory Room** to collect Tier-A gear (Netherite, Totems, Gaps, XP).
 5. **The Wilderness:** Players leave the dungeon fully equipped to dominate the anarchy wilderness.
