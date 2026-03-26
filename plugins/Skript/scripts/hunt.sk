@@ -1,0 +1,318 @@
+# ==========================================
+# COMMAND: OPEN GUI
+# ==========================================
+command /vhunt:
+    aliases: /bounty
+    trigger:
+        open a new chest inventory with 6 rows named "&8&lBounty Targets" to player
+        wait 1 tick
+        
+        set {_slot} to 0
+        loop all players:
+            set {_pname} to loop-player's name
+            set {_head} to player head named "&c&l%{_pname}%"
+            
+            set {_v} to {hunt_votes::%{_pname}%}
+            if {_v} is not set:
+                set {_v} to 0
+                
+            set lore of {_head} to "&7Current Votes: &f%{_v}%&7/3" and "" and "&eClick to cast your vote!"
+            
+            set slot {_slot} of player's current inventory to {_head}
+            add 1 to {_slot}
+
+# ==========================================
+# EVENT: GUI CLICK LOGIC & VOTING
+# ==========================================
+on inventory click:
+    if name of event-inventory is "&8&lBounty Targets":
+        cancel event
+        
+        if event-inventory is not player's inventory:
+            if event-item is a player head:
+                set {_target} to uncolored name of event-item
+                
+                # Check 1: Is a hunt currently active right now?
+                if size of {hunt_active::*} > 0:
+                    send "&c&l[!] &cA hunt is already in progress! Wait for it to end." to player
+                    close player's inventory
+                    stop
+                
+                # Check 2: 10-Minute Global Cooldown
+                if {hunt_global_cooldown} is set:
+                    set {_waited} to difference between {hunt_global_cooldown} and now
+                    if {_waited} is less than 10 minutes:
+                        set {_time_left} to difference between 10 minutes and {_waited}
+                        send "&c&l[!] &cThe server is recovering! You can vote again in &f%{_time_left}%&c." to player
+                        close player's inventory
+                        stop
+                    else:
+                        delete {hunt_global_cooldown}
+
+                # Check 3: Personal Combat Log Penalty (1 Hour)
+                if {hunt_penalty::%player's name%} is set:
+                    set {_waited} to difference between {hunt_penalty::%player's name%} and now
+                    if {_waited} is less than 1 hour:
+                        set {_time_left} to difference between 1 hour and {_waited}
+                        send "&c&l[!] &cYou fled a hunt! You cannot vote for another &f%{_time_left}%&c." to player
+                        close player's inventory
+                        stop
+                    else:
+                        delete {hunt_penalty::%player's name%}
+                
+                # Check 4: Can't vote for yourself
+                if {_target} is player's name:
+                    send "&cYou cannot vote for yourself!" to player
+                    close player's inventory
+                    stop
+                    
+                # Check 5: Overwrite old vote
+                if {hunt_voted_for::%player's name%} is set:
+                    set {_old} to {hunt_voted_for::%player's name%}
+                    if {_old} is {_target}:
+                        send "&cYou already voted for %{_target}%!" to player
+                        close player's inventory
+                        stop
+                    remove 1 from {hunt_votes::%{_old}%}
+                    
+                # Add the new vote
+                add 1 to {hunt_votes::%{_target}%}
+                set {hunt_voted_for::%player's name%} to {_target}
+                
+                close player's inventory
+                broadcast "&e&lHUNT &8» &f%player's name% &7voted for &c%{_target}%&7! (&6%{hunt_votes::%{_target}%}%&f/3&7)"
+
+                # ==========================================
+                # TRIGGER: 3 VOTES REACHED
+                # ==========================================
+                if {hunt_votes::%{_target}%} >= 3:
+                    if {hunt_active::%{_target}%} is not true:
+                        set {hunt_active::%{_target}%} to true
+                        set {_target_player} to {_target} parsed as player
+                        
+                        # Clear all votes so next hunt starts fresh
+                        delete {hunt_votes::*}
+                        delete {hunt_voted_for::*}
+                        
+                        broadcast ""
+                        broadcast "&4&l[!] &c&l%{_target}% HAS REACHED 3 VOTES!"
+                        broadcast "&c&lTHE HUNT HAS BEGUN! THEY HAVE 30 MINUTES TO SURVIVE."
+                        broadcast ""
+                        
+                        apply glowing to {_target_player} for 30 minutes
+                        reveal {_target_player} to all players
+                        execute console command "tab player %{_target}% tagprefix &c&l[WANTED] &r"
+                        
+                        loop all players:
+                            if loop-player's name is not {_target}:
+                                give loop-player 1 compass named "&c&lTracker: &f%{_target}%"
+                                
+                        set {hunt_time_left::%{_target}%} to 1800 # 30 minutes = 1800 seconds
+                        
+                        while {hunt_active::%{_target}%} is true:
+                            # IF THE TARGET SURVIVES THE FULL 30 MINUTES
+                            if {hunt_time_left::%{_target}%} <= 0:
+                                broadcast "&a&l[!] &f%{_target}% &asurvived the 30-minute hunt!"
+                                
+                                delete {hunt_active::%{_target}%}
+                                set {hunt_global_cooldown} to now # Start 10 min cooldown
+                                
+                                remove glowing from {_target_player}
+                                execute console command "tab player %{_target}% tagprefix &r"
+                                
+                                loop all players:
+                                    loop items in loop-player's inventory:
+                                        if name of loop-item is "&c&lTracker: &f%{_target}%":
+                                            remove loop-item from loop-player's inventory
+                                            
+                                # --- THE SURVIVAL REWARD ---
+                                execute console command "scoreboard players add %{_target}% cratekeys 2"
+                                send "&a&l[!] &aYou survived the hunt! +2 Crate Keys & Survival Loot!" to {_target_player}
+                                
+                                set {_pearls} to 8 ender pearl
+                                set {_rods} to 16 breeze rod
+                                set {_pots} to 2 of splash potion of strong strength
+                                
+                                if {_target_player} can hold {_pearls}:
+                                    give {_pearls} to {_target_player}
+                                else:
+                                    drop {_pearls} at location of {_target_player}
+                                    
+                                if {_target_player} can hold {_rods}:
+                                    give {_rods} to {_target_player}
+                                else:
+                                    drop {_rods} at location of {_target_player}
+                                    
+                                if {_target_player} can hold {_pots}:
+                                    give {_pots} to {_target_player}
+                                else:
+                                    drop {_pots} at location of {_target_player}
+                                    
+                                stop # Ends the loop safely
+                                
+                            set {_loc} to location of {_target_player}
+                            loop all players:
+                                if loop-player's name is not {_target}:
+                                    set loop-player's compass target to {_loc}
+                                    
+                            wait 5 seconds
+                            remove 5 from {hunt_time_left::%{_target}%}
+
+# ==========================================
+# EVENT: COMBAT LOGGING (QUIT)
+# ==========================================
+on quit:
+    if {hunt_active::%player's name%} is true:
+        broadcast "&c&l[!] THE COWARD %player's name% FLED THE SERVER!"
+        broadcast "&7Their hunt has been cancelled."
+        
+        set {hunt_penalty::%player's name%} to now # 1 Hour personal penalty
+        set {hunt_global_cooldown} to now # Start 10 min global cooldown
+        
+        delete {hunt_active::%player's name%}
+        delete {hunt_time_left::%player's name%}
+        
+        remove glowing from player
+        execute console command "tab player %player's name% tagprefix &r"
+        
+        loop all players:
+            loop items in loop-player's inventory:
+                if name of loop-item is "&c&lTracker: &f%player's name%":
+                    remove loop-item from loop-player's inventory
+
+# ==========================================
+# EVENT: DEATH & REWARDS
+# ==========================================
+on death of player:
+    # SCENARIO 1: HUNTER KILLS THE WANTED PERSON
+    if {hunt_active::%victim's name%} is true:
+        delete {hunt_active::%victim's name%}
+        delete {hunt_time_left::%victim's name%}
+        set {hunt_global_cooldown} to now # Start 10 min global cooldown
+        
+        execute console command "tab player %victim's name% tagprefix &r"
+        
+        loop all players:
+            loop items in loop-player's inventory:
+                if name of loop-item is "&c&lTracker: &f%victim's name%":
+                    remove loop-item from loop-player's inventory
+        
+        if attacker is a player:
+            broadcast "&6&l[!] &e%attacker's name% &fhas assassinated &c%victim's name%&f!"
+            broadcast "&7The hunt is over and the bounty has been claimed."
+            
+            execute console command "scoreboard players add %attacker's name% cratekeys 4"
+            send "&b&l[!] &bYou received +4 Crate Keys for the assassination!" to attacker
+            
+            set {_pearls} to 8 ender pearl
+            set {_rods} to 16 breeze rod
+            set {_pots} to 2 of splash potion of strong strength
+            
+            if attacker can hold {_pearls}:
+                give {_pearls} to attacker
+            else:
+                drop {_pearls} at location of attacker
+                
+            if attacker can hold {_rods}:
+                give {_rods} to attacker
+            else:
+                drop {_rods} at location of attacker
+                
+            if attacker can hold {_pots}:
+                give {_pots} to attacker
+            else:
+                drop {_pots} at location of attacker
+        else:
+            broadcast "&6&l[!] &c%victim's name% &fdied to the environment! The hunt is over."
+
+    # SCENARIO 2: WANTED PERSON KILLS A HUNTER
+    else if attacker is a player:
+        if {hunt_active::%attacker's name%} is true:
+            execute console command "scoreboard players add %attacker's name% cratekeys 2"
+            send "&a&l[!] &aYou killed a hunter! +2 Crate Keys & Survival Loot!" to attacker
+            
+            set {_pearls} to 8 ender pearl
+            set {_rods} to 16 breeze rod
+            set {_pots} to 2 of splash potion of strong strength
+            
+            if attacker can hold {_pearls}:
+                give {_pearls} to attacker
+            else:
+                drop {_pearls} at location of attacker
+                
+            if attacker can hold {_rods}:
+                give {_rods} to attacker
+            else:
+                drop {_rods} at location of attacker
+                
+            if attacker can hold {_pots}:
+                give {_pots} to attacker
+            else:
+                drop {_pots} at location of attacker
+
+# ==========================================
+# COMMANDS: UTILITIES
+# ==========================================
+command /hunttime <text>:
+    aliases: /bountytime
+    trigger:
+        if {hunt_active::%arg-1%} is not true:
+            send "&c%arg-1% is not currently being hunted!" to player
+            stop
+        set {_total} to {hunt_time_left::%arg-1%}
+        set {_m} to floor({_total} / 60)
+        set {_s} to mod({_total}, 60)
+        send "&e&lHUNT &8» &c%arg-1% &7must survive for another &f%{_m}%m %{_s}%s&7!" to player
+
+command /resetvotes:
+    permission: op
+    trigger:
+        delete {hunt_votes::*}
+        delete {hunt_voted_for::*}
+        delete {hunt_active::*}
+        delete {hunt_time_left::*}
+        delete {hunt_global_cooldown}
+        loop all players:
+            remove glowing from loop-player
+            execute console command "tab player %loop-player's name% tagprefix &r"
+            loop items in loop-player's inventory:
+                if name of loop-item contains "&c&lTracker:":
+                    remove loop-item from loop-player's inventory
+        broadcast "&c&l[!] &7An admin has forcibly reset all bounties and active hunts."
+
+command /resethuntcooldown:
+    permission: op
+    trigger:
+        delete {hunt_global_cooldown}
+        send "&a&l[!] &aYou have bypassed the 10-minute global hunt cooldown." to player
+# ==========================================
+# COMMAND: ADMIN PARDON (FOR EMERGENCIES)
+# ==========================================
+command /pardonhunt <text>:
+    permission: op
+    trigger:
+        if {hunt_penalty::%arg-1%} is set:
+            delete {hunt_penalty::%arg-1%}
+            send "&a&l[!] &aYou pardoned &f%arg-1%&a! Their penalty is gone." to player
+        else:
+            send "&c%arg-1% does not have an active penalty." to player
+
+# ==========================================
+# EVENT: JOIN LOGIC (LATECOMERS & STALE COMPASSES)
+# ==========================================
+on join:
+    # 1. The Sweep: Confiscate any old compasses they brought from offline
+    loop items in player's inventory:
+        if name of loop-item contains "&c&lTracker:":
+            remove loop-item from player's inventory
+            
+    # 2. The Catch-Up: If a hunt is happening right now, give them the live tracker
+    if size of {hunt_active::*} > 0:
+        # Loop through the active list to find the name of the current target
+        loop {hunt_active::*}:
+            set {_active_target} to loop-index
+            
+        # Make sure the person joining isn't the target themselves
+        if player's name is not {_active_target}:
+            give player 1 compass named "&c&lTracker: &f%{_active_target}%"
+            send "&c&l[!] &7A bounty hunt is currently active! Here is your tracker." to player

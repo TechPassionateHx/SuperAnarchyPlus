@@ -1,0 +1,17 @@
+# === Skript's variable storage ===
+# Please do not modify this file manually!
+#
+# version: 2.12.2
+
+hunt_penalty::hellofriend1, date, 810974696D657374616D70040000019D251D1C36
+hunt_voted_for::a_k_gamer, string, 800A414248494E4156303037
+hunt_voted_for::abhinav007, string, 800A785873656E7061695878
+hunt_votes::abhinav007, long, 0000000000000001
+hunt_votes::technovax, long, 0000000000000000
+hunt_votes::xxsenpaixx, long, 0000000000000001
+player_choice::<none>, string, 800C68656C6C6F667269656E6431
+player_choice::b1ef84e9-0ec7-39a0-9c49-2cf185e7153c, string, 800C68656C6C6F667269656E6431
+voted::b1ef84e9-0ec7-39a0-9c49-2cf185e7153c, uuid, 820C6C656173745369674269747304840222DF3CD4123B0B6D6F73745369674269747304D057C7D1654B34A3
+votes::<none>, double, BFF0000000000000
+votes::d057c7d1-654b-34a3-8402-22df3cd4123b, long, 0000000000000003
+
