@@ -26,7 +26,7 @@ A 100% custom-coded Skript system that turns the wilderness into a hunting groun
 * **The Vote-Based Hitlist:** Players type `/vhunt` to open a GUI showing all online players and cast a vote on who should be hunted.
 * **The Trigger:** Once a player receives **3 votes** from the server, the hunt officially begins! They are marked as `[WANTED]` and glow red. 
 * **The Chase:** The target must survive for **30 Minutes**. Every other player on the server receives a Tracker Compass pointing directly to the target's coordinates.
-* **The Blood Money:** * If the hunters kill the target, the killer gets **4 Crate Keys** and high-tier survival loot (Ender Pearls, Breeze Rods, Strength Pots).
+* **The Blood Money:**  If the hunters kill the target, the killer gets **4 Crate Keys** and high-tier survival loot (Ender Pearls, Breeze Rods, Strength Pots).
   * If the target kills a hunter, the target gets **2 Crate Keys** and survival loot to keep fighting.
   * If the target survives the full 30 minutes, they receive the full survival loot drop!
   * Note: **Crate Keys** are tracked as digital Scoreboard points. Players can save these up to exchange for massive real-item rewards in future!*
